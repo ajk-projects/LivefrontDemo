@@ -31,11 +31,11 @@ As mentioned, this app is a Bluesky client, with an very small subset of feature
 
 |Feed View|Detail View|
 |:---:|:---:|
-|![Screenshot_20250410_103251](https://github.com/user-attachments/assets/d9e13b14-9dd5-494e-9f8c-1ff9259f3fe1)|![Screenshot_20250410_103229](https://github.com/user-attachments/assets/a12a670b-d17b-40a7-8a17-13294c46aa1d)|
+|![Screenshot_20250410_103251](https://github.com/user-attachments/assets/36db3866-a0d9-4a5e-a7dc-7651e84d2e8f)|![Screenshot_20250410_103229](https://github.com/user-attachments/assets/a43b8f19-8876-42ab-86a6-943f5c80020e)|
 
 |Account View (Pixel Fold)|Compose View (Pixel Fold)|
 |:---:|:---:|
-|![Screenshot_20250409_204746](https://github.com/user-attachments/assets/d9063984-fa6f-4bc5-8c6e-908fbbc601ad)|![Screenshot_20250409_204837](https://github.com/user-attachments/assets/96fbd2e3-7836-4d49-b03a-18d5fd122616)|
+|![Screenshot_20250409_204746](https://github.com/user-attachments/assets/311149f9-f590-4de7-9a31-a691647cf452)|![Screenshot_20250409_204857](https://github.com/user-attachments/assets/71731d31-89bf-4e2b-b70a-ef35ab13c776)|
 
 ## Libraries Used
 Notable 3rd party libraries used:
