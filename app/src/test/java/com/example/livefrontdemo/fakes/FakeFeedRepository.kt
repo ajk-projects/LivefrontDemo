@@ -2,16 +2,19 @@ package com.example.livefrontdemo.fakes
 
 import com.example.livefrontdemo.data.getTimelinePosts
 import com.example.livefrontdemo.data.repository.FeedRepository
-import com.example.livefrontdemo.data.repository.model.TimelinePost
-import com.example.livefrontdemo.data.repository.model.exception.FeedException
+import com.example.livefrontdemo.data.repository.model.TimelineResult
 
 class FakeFeedRepository(private val throwError: Boolean = false) : FeedRepository {
-    override suspend fun getMyTimeline(refresh: Boolean): List<TimelinePost> {
-        if (throwError) throw FeedException()
+    override suspend fun getMyTimeline(refresh: Boolean): TimelineResult {
+        if (throwError) return TimelineResult.Error()
         return if (refresh) {
-            getTimelinePosts(count = 2)
+            TimelineResult.Success(
+                posts = getTimelinePosts(count = 2)
+            )
         } else {
-            getTimelinePosts()
+            TimelineResult.Success(
+                posts = getTimelinePosts()
+            )
         }
     }
 }

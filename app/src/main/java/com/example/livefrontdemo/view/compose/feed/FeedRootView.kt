@@ -28,6 +28,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import com.example.livefrontdemo.data.repository.model.TimelinePost
 import com.example.livefrontdemo.ui.theme.LivefrontDemoTheme
+import com.example.livefrontdemo.view.compose.reusable.AvatarImage
 import com.example.livefrontdemo.view.stateholder.model.FeedState
 import com.example.livefrontdemo.view.util.NoInputHandler
 import kotlinx.coroutines.launch
@@ -109,6 +110,19 @@ fun FeedRootView(
                 }
             }
         },
+        extraPane = {
+            AnimatedPane(
+                modifier = Modifier.background(MaterialTheme.colorScheme.background)
+            ) {
+                scaffoldNavigator.currentDestination?.contentKey?.avatarUrl?.let { postImageUrl ->
+                    AvatarImage(
+                        imageUrl = postImageUrl,
+                        contentDescription = "enlarged avatar image",
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                }
+            }
+        }
     )
 }
 

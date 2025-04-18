@@ -3,18 +3,15 @@ package com.example.livefrontdemo.data.datastore
 import com.example.livefrontdemo.data.api.BlueSkyApi
 import com.example.livefrontdemo.data.api.model.AuthRequestApiModel
 import com.example.livefrontdemo.data.datastore.model.StartAuthResult
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class AuthDataStoreImpl @Inject constructor(
     private val bskyApi: BlueSkyApi,
-    private val ioDispatcher: CoroutineDispatcher,
 ) : AuthDataStore {
     override suspend fun startAuthSession(
         username: String,
         password: String,
-    ): StartAuthResult = withContext(ioDispatcher) {
+    ): StartAuthResult =
         runCatching {
             bskyApi.initAuthSession(
                 body = AuthRequestApiModel(
@@ -38,7 +35,6 @@ class AuthDataStoreImpl @Inject constructor(
         }.getOrElse {
             StartAuthResult.Failure(reason = UNKNOWN_ERROR)
         }
-    }
 
     private companion object {
         private const val SERVICE_FAILURE = "service_failure"

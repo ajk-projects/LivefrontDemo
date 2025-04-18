@@ -96,7 +96,7 @@ fun AccountRootView(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = stringResource(R.string.following),
+                            text = stringResource(R.string.followers),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                         Spacer(modifier = Modifier.width(24.dp))
@@ -107,7 +107,7 @@ fun AccountRootView(
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = stringResource(R.string.followers),
+                            text = stringResource(R.string.following),
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                         Spacer(modifier = Modifier.weight(1f))

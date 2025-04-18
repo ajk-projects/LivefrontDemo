@@ -10,8 +10,6 @@ import dagger.Provides
 import dagger.Reusable
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -24,9 +22,6 @@ object NetworkModule {
     @Provides
     @Reusable
     fun provideBaseUrl(): String = "https://bsky.social/xrpc/"
-
-    @Provides
-    fun ioDispatcher(): CoroutineDispatcher = Dispatchers.IO
 
     @Singleton
     @Provides

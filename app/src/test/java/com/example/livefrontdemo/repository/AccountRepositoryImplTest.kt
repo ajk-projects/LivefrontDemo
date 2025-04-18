@@ -3,18 +3,16 @@ package com.example.livefrontdemo.repository
 import com.example.livefrontdemo.data.datastore.AuthorDataStore
 import com.example.livefrontdemo.data.repository.AccountRepository
 import com.example.livefrontdemo.data.repository.AccountRepositoryImpl
-import com.example.livefrontdemo.data.repository.model.exception.AccountException
+import com.example.livefrontdemo.data.repository.model.AccountDetailResult
 import com.example.livefrontdemo.fakes.FakeAuthorDataStore
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class AccountRepositoryImplTest {
-
     private lateinit var sut: AccountRepository
 
     private fun initSubject(
@@ -29,20 +27,16 @@ class AccountRepositoryImplTest {
     fun `test get author detail`() = runTest {
         initSubject()
 
-        val result = sut.getAccountInfo(handle = "test")
+        val result = sut.getAccountInfo(handle = "test") as? AccountDetailResult.Success
 
-        assert(result.handle == "test")
+        assert(result?.accountDetail?.handle == "test")
     }
 
     @Test
     fun `test get author detail fail throws ex`() = runTest {
         initSubject(authorDataStore = FakeAuthorDataStore(returnError = true))
 
-        assertThrows(AccountException::class.java) {
-            runBlocking {
-                sut.getAccountInfo(handle = "test")
-            }
-        }
+        assertTrue(sut.getAccountInfo(handle = "test") is AccountDetailResult.Error)
     }
 
     @Test

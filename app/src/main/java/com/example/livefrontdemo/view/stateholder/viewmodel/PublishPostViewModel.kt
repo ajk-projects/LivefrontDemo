@@ -7,7 +7,6 @@ import com.example.livefrontdemo.data.datastore.PublishPostDataStore
 import com.example.livefrontdemo.data.datastore.model.PublishPostResult
 import com.example.livefrontdemo.view.stateholder.model.PostState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -16,7 +15,6 @@ import javax.inject.Inject
 @HiltViewModel
 class PublishPostViewModel @Inject constructor(
     private val publishPostDataStore: PublishPostDataStore,
-    private val ioDispatcher: CoroutineDispatcher,
 ) : ViewModel() {
     private val _displayComposeBottomSheet = MutableStateFlow(false)
     val displayComposeBottomSheet = _displayComposeBottomSheet.asStateFlow()
@@ -25,7 +23,7 @@ class PublishPostViewModel @Inject constructor(
     val postState = _postState.asStateFlow()
 
     fun publishPost(text: String) {
-        viewModelScope.launch(ioDispatcher) {
+        viewModelScope.launch {
             _postState.value = PostState.Posting
             _postState.value = when (publishPostDataStore.publishPost(text)) {
                 is PublishPostResult.Success -> {

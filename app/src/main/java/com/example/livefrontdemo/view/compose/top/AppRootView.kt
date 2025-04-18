@@ -12,6 +12,7 @@ import androidx.compose.material.icons.rounded.Create
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.NavigationBarItem
@@ -99,6 +100,7 @@ fun AppRootView(
             ) {
                 FloatingActionButton(
                     onClick = postViewModel::displayComposeView,
+                    elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
                 ) {
                     Icon(
                         imageVector = Icons.Rounded.Create,

@@ -3,18 +3,16 @@ package com.example.livefrontdemo.repository
 import com.example.livefrontdemo.data.datastore.FeedDataStore
 import com.example.livefrontdemo.data.repository.FeedRepository
 import com.example.livefrontdemo.data.repository.FeedRepositoryImpl
-import com.example.livefrontdemo.data.repository.model.exception.FeedException
+import com.example.livefrontdemo.data.repository.model.TimelineResult
 import com.example.livefrontdemo.fakes.FakeFeedDataStore
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertThrows
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class FeedRepositoryImplTest {
-
     private lateinit var sut: FeedRepository
 
     private fun initSubject(
@@ -29,20 +27,16 @@ class FeedRepositoryImplTest {
     fun `fetch feed posts`() = runTest {
         initSubject()
 
-        val result = sut.getMyTimeline()
+        val result = sut.getMyTimeline() as? TimelineResult.Success
 
-        assert(result.isNotEmpty())
+        assert(result?.posts.isNullOrEmpty().not())
     }
 
     @Test
     fun `fetch feed posts with error`() = runTest {
         initSubject(feedDataStore = FakeFeedDataStore(returnError = true))
 
-        assertThrows(FeedException::class.java) {
-            runBlocking {
-                sut.getMyTimeline()
-            }
-        }
+        assertTrue(sut.getMyTimeline() is TimelineResult.Error)
     }
 
     @Test

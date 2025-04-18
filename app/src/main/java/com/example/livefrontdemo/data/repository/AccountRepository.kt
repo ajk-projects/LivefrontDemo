@@ -1,7 +1,6 @@
 package com.example.livefrontdemo.data.repository
 
-import com.example.livefrontdemo.data.repository.model.AccountDetail
-import com.example.livefrontdemo.data.repository.model.exception.AccountException
+import com.example.livefrontdemo.data.repository.model.AccountDetailResult
 
 interface AccountRepository {
     /**
@@ -9,9 +8,7 @@ interface AccountRepository {
      *
      * @param handle The user's handle.
      * @param refresh Pull from the network & refresh the cache. Defaults to false.
-     * @return The account information.
-     * @throws AccountException If the account cannot be retrieved.
+     * @return An [AccountDetailResult] indicating success with data or failure.
      */
-    @Throws(AccountException::class)
-    suspend fun getAccountInfo(handle: String, refresh: Boolean = false): AccountDetail
+    suspend fun getAccountInfo(handle: String, refresh: Boolean = false): AccountDetailResult
 }
