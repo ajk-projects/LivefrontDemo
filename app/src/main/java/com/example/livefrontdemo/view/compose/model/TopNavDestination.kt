@@ -11,11 +11,11 @@ sealed class TopNavDestination(
     object Account : TopNavDestination(route = "account", title = R.string.account)
 
     companion object {
-        fun titleForRoute(route: String?): Int {
+        fun titleResForRoute(route: String?): Int? {
             return when (route) {
                 Feed.route -> Feed.title
                 Account.route -> Account.title
-                else -> R.string.app_name
+                else -> null
             }
         }
     }

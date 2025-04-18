@@ -70,7 +70,7 @@ fun AppRootView(
                     title = {
                         AnimatedContent(currentRoute) { route ->
                             Text(
-                                text = stringResource(id = TopNavDestination.titleForRoute(route)),
+                                text = TopNavDestination.titleResForRoute(route)?.let { stringResource(id = it) }.orEmpty(),
                                 fontWeight = FontWeight.Bold,
                                 fontFamily = FontFamily.Monospace,
                             )

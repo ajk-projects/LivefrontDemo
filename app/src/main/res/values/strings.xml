@@ -20,6 +20,6 @@
     <string name="posting_error">Failed to post, retry.</string>
     <string name="no_user_found_error">No user found, retry.</string>
     <string name="user_data_load_error">Failed to fetch user, retry.</string>
-    <string name="no_posts_found_error">No posts found, pull to refresh.</string>
+    <string name="no_posts_found_error">Failed to fetch posts, pull to refresh.</string>
     <string name="login_error">Error logging in, retry.</string>
 </resources>
