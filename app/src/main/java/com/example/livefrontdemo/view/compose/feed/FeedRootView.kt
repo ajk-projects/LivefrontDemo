@@ -64,12 +64,13 @@ fun FeedRootView(
                     Crossfade(
                         targetState = feedState,
                     ) { state ->
-                        when (state) {
-                            is FeedState.Success -> {
-                                LazyColumn(
-                                    modifier = Modifier.fillMaxSize()
-                                ) {
-                                    item { Spacer(modifier = Modifier.height(8.dp)) }
+
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            item { Spacer(modifier = Modifier.height(8.dp)) }
+                            when (state) {
+                                is FeedState.Success -> {
                                     items(items = state.posts) { item ->
                                         FeedPostView(
                                             post = item,
@@ -78,19 +79,21 @@ fun FeedRootView(
                                         )
                                         Spacer(modifier = Modifier.height(8.dp))
                                     }
-                                    item { Spacer(modifier = Modifier.height(8.dp)) }
                                 }
+
+                                is FeedState.Error -> item {
+                                    Text(
+                                        text = stringResource(id = state.message),
+                                        textAlign = TextAlign.Center,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 16.dp),
+                                    )
+                                }
+
+                                else -> Unit
                             }
-
-                            is FeedState.Error -> Text(
-                                text = stringResource(id = state.message),
-                                textAlign = TextAlign.Center,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(vertical = 16.dp),
-                            )
-
-                            else -> Unit
+                            item { Spacer(modifier = Modifier.height(8.dp)) }
                         }
                     }
                 }
